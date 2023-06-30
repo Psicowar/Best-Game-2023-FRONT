@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from "react";
 import { TYPES } from "./types";
-import { CheckUserData } from "../helpers";
+import { CheckUserData } from "../utils";
 
 
 
@@ -10,6 +10,7 @@ const token = localStorage.getItem('userToken') || undefined;
 export const useAuth = () => {
     return useContext(AuthContext);
 };
+
 
 export const AuthProvider = ({ children }) => {
     const { checkUser } = CheckUserData()
@@ -22,6 +23,8 @@ export const AuthProvider = ({ children }) => {
             firstName: "",
             lastName: "",
             email: "",
+            role: "",
+            remainingVotes: 0
         },
         token: "",
         error: "",

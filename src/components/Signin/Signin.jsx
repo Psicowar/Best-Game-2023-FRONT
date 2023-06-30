@@ -2,7 +2,7 @@ import { Button, Label, TextInput } from 'flowbite-react';
 import { SIGNUP } from '../../router/path';
 import { NavLink } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { SubmitSigninData } from '../../helpers/index'
+import { SubmitSigninData } from '../../utils/index'
 
 export const Signin = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();

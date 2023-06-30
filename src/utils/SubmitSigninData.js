@@ -1,26 +1,29 @@
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import Swal from "sweetalert2"
+import { useAuth } from "../context/AuthContext"
 import { HOME } from "../router/path"
 
 export const SubmitSigninData = () => {
     const navigate = useNavigate()
-
+    const { login } = useAuth();
+    
     const sendUserData = (data) => {
 
         axios.post(import.meta.env.VITE_BACKEND + 'users/authenticate', { data })
             .then(({ status, data }) => {
                 const { token } = data
-                console.log(data);
                 if (status === 201) {
-                    // login(
-                    //     {
-                    //         id: data._id,
-                    //         firstName: data.name,
-                    //         lastName: data.last_name,
-                    //         email: data.email,
-                    //     }, token
-                    // );
+                    login(
+                        {
+                            id: data._id,
+                            firstName: data.firstName,
+                            lastName: data.lastName,
+                            email: data.email,
+                            role: data.role,
+                            remainingVotes: data.remainingVotes
+                        }, token
+                    );
                     Swal.fire({
                         position: 'center',
                         icon: 'success',

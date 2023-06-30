@@ -1,8 +1,25 @@
 import { Button, Navbar } from 'flowbite-react';
 import { NavLink, useLocation } from "react-router-dom"
-import { ACCSETTINGS, HOME, SIGNIN, SIGNUP } from '../../router/path';
+import { SIGNIN, SIGNUP, HOME } from '../../router/path';
+import { useAuth } from '../../context/AuthContext';
+import Swal from 'sweetalert2';
 
 export const NavbarComponent = () => {
+    const { authState, logout } = useAuth()
+    const { isAuthenticated, user } = authState
+
+    const handleLogout = () => {
+        logout(null)
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Logged out successfully',
+            showConfirmButton: false,
+            background: "#1b1e2a",
+            timer: 1500
+        })
+    }
+
     const location = useLocation()
     const { pathname } = location
     return (
@@ -17,27 +34,38 @@ export const NavbarComponent = () => {
                 </span>
             </Navbar.Brand>
             <div className="flex md:order-2">
-                <Button>
-                    {
+                {
+                    isAuthenticated ?
+                        <div className='flex items-center gap-5'>
+                            <span>Welcome {user.firstName}!</span>
+                            <Button onClick={handleLogout}>
+                                <span>Logout</span>
+                            </Button>
+                        </div>
+                        :
                         pathname === SIGNIN ?
+
                             <NavLink to={SIGNUP}>
-                                <span className="">Sign up</span>
+                                <Button>
+                                    <span>Sign up</span>
+                                </Button>
                             </NavLink>
                             :
                             <NavLink to={SIGNIN}>
-                                <span className="">Sign in</span>
+                                <Button>
+                                    <span>Sign in</span>
+                                </Button>
                             </NavLink>
-                    }
-                </Button>
+
+
+                }
                 <Navbar.Toggle />
             </div>
             <Navbar.Collapse>
                 <NavLink to={HOME} className={({ isActive }) => (isActive ? 'bg-gray-200 flex justify-center text-teal-600' : 'hover:bg-gray-100 flex justify-center hover:text-teal-600')}>
                     <span>Home</span>
                 </NavLink>
-                <NavLink to={ACCSETTINGS} className={({ isActive }) => (isActive ? 'bg-gray-200 flex justify-center text-teal-600' : 'hover:bg-gray-100 flex justify-center hover:text-teal-600')}>
-                    <span>Account settings</span>
-                </NavLink>
+
             </Navbar.Collapse>
         </Navbar>
     )

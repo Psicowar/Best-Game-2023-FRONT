@@ -2,7 +2,7 @@ import { Button, Label, TextInput } from 'flowbite-react';
 import { NavLink } from 'react-router-dom';
 import { SIGNIN } from '../../router/path';
 import { useForm } from 'react-hook-form';
-import { SubmitSignupData } from '../../helpers/index'
+import { SubmitSignupData } from '../../utils/index'
 
 export const Signup = () => {
   const { sendUserData } = SubmitSignupData()

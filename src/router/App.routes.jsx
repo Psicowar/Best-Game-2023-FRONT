@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { ACCSETTINGS, HOME, SIGNIN, SIGNUP } from './path'
-import { AccSettingsPage, SigninPage, SignupPage } from '../pages/index'
+import { SIGNIN, HOME, SIGNUP } from './path'
+import { SigninPage, SignupPage } from '../pages/index'
 import { NavbarComponent } from '../components/index'
+import { HomePage } from '../pages/HomePage'
 
 
 export const AppRoutes = () => {
@@ -9,10 +10,9 @@ export const AppRoutes = () => {
     <Router>
       <NavbarComponent />
       <Routes>
-        <Route path={HOME} element={<h1>Home</h1>} />
+        <Route index path={HOME} element={<HomePage />} />
         <Route path={SIGNIN} element={<SigninPage />} />
         <Route path={SIGNUP} element={<SignupPage />} />
-        <Route path={ACCSETTINGS} element={<AccSettingsPage />} />
       </Routes>
     </Router>
   )
