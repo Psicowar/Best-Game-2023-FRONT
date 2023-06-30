@@ -7,8 +7,7 @@ export const TYPES = {
     REFRESH_PAGE: "REFRESH_PAGE",
 
     // Global reducer types
-    SET_ALL_GIFS: "SET_ALL_GIFS",
-    SET_USER_GIFS: "SET_USER_GIFS"
+    SET_ALL_GAMES: "SET_ALL_GAMES",
 }
 
 
