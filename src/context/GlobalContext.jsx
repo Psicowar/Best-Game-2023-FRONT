@@ -20,6 +20,7 @@ export const GlobalProvider = ({ children }) => {
                 return {
                     allGames: action.payload.allGames
                 };
+
             default:
                 return state;
         }
@@ -31,12 +32,12 @@ export const GlobalProvider = ({ children }) => {
 
 
 
-    const [gamesState, dispatch] = useReducer(reducer, initialState)
+    const [globalState, dispatch] = useReducer(reducer, initialState)
 
     const data = useMemo(() => ({
-        gamesState,
+        globalState,
         setAllGames,
-    }), [gamesState, setAllGames])
+    }), [globalState, setAllGames])
 
     return <GlobalContext.Provider value={data}>{children}</GlobalContext.Provider>
 

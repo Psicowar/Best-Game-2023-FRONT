@@ -1,12 +1,14 @@
 import { Button, Navbar } from 'flowbite-react';
 import { NavLink, useLocation } from "react-router-dom"
-import { SIGNIN, SIGNUP, HOME } from '../../router/path';
+import { SIGNIN, SIGNUP } from '../../router/path';
 import { useAuth } from '../../context/AuthContext';
 import Swal from 'sweetalert2';
 
 export const NavbarComponent = () => {
+    
     const { authState, logout } = useAuth()
     const { isAuthenticated, user } = authState
+
 
     const handleLogout = () => {
         logout(null)
@@ -62,9 +64,6 @@ export const NavbarComponent = () => {
                 <Navbar.Toggle />
             </div>
             <Navbar.Collapse>
-                <NavLink to={HOME} className={({ isActive }) => (isActive ? 'bg-gray-200 flex justify-center text-teal-600' : 'hover:bg-gray-100 flex justify-center hover:text-teal-600')}>
-                    <span>Home</span>
-                </NavLink>
 
             </Navbar.Collapse>
         </Navbar>

@@ -10,7 +10,7 @@ import { UpdateGameDataModal } from "../UpdateGameDataModal/UpdateGameDataModal"
 import { UpdateGameVotes } from "../../utils/UpdateGameVotes";
 import Swal from "sweetalert2";
 import { SIGNIN } from "../../router/path";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 
 
@@ -19,16 +19,20 @@ export const Home = () => {
     const [openUploadModal, setOpenUploadModal] = useState(false);
     const [openUpdateGameModal, setOpenUpdateGameModal] = useState(false);
     const [currentGame, setCurrentGame] = useState()
-    const { gamesState } = useGlobalContext()
+    const { globalState } = useGlobalContext()
     const { addVote, removeVote } = UpdateGameVotes()
     const { checkUser } = CheckUserData()
     const { getAllGames } = GetGames()
     const { deleteSingleGame } = DeleteGame()
     const navigate = useNavigate()
-    const { allGames } = gamesState
+    const [searchParams, setSearchParams] = useSearchParams();
+    const { allGames } = globalState
     const { authState, refresh } = useAuth()
     const { isAuthenticated, user } = authState
+    const queryParams = searchParams.get('q') ?? "";
 
+    const orderedGamesByVotes = allGames?.sort(({ votes: a }, { votes: b }) => b - a)
+  
     useEffect(() => {
         getAllGames()
     }, [])
@@ -64,10 +68,13 @@ export const Home = () => {
     }
 
 
-
     const handleUnVote = (gameId) => {
         removeVote(gameId, user.id)
         checkUser(authState.token, refresh)
+    }
+
+    const handleFilter = ({ target }) => {
+        setSearchParams({ q: target.value })
     }
 
 
@@ -75,7 +82,17 @@ export const Home = () => {
         <>
             <AddGameModal setOpen={setOpenUploadModal} open={openUploadModal} />
             <UpdateGameDataModal setOpen={setOpenUpdateGameModal} open={openUpdateGameModal} game={currentGame} />
+            <div className="flex w-full items-center justify-center pt-16 pb-12">
+                    <input
+                        type="text"
+                        className="border-0 bg-gray-200 focus:border-t-transparent focus:ring-gray-300 w-96 rounded-md "
+                        placeholder="Search..."
+                        value={queryParams}
+                        onChange={handleFilter}
+                    />
+                </div>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 p-3 gap-y-10 place-items-center">
+                
                 {
                     isAuthenticated && user.role === "A" &&
                     <Card className="w-[262px] h-[437.6px] flex items-center hover:shadow-none hover:bg-gray-200" onClick={() => setOpenUploadModal(true)}>
@@ -83,7 +100,12 @@ export const Home = () => {
                     </Card>
                 }
                 {
-                    allGames.sort(({ votes: a }, { votes: b }) => b - a).map((game) => (
+                    orderedGamesByVotes?.filter(({ gameName }) => {
+                        if (!queryParams) return true
+                        else if (queryParams.length < 3) return true
+                        else return gameName?.toLowerCase().includes(queryParams.toLowerCase())
+                    })
+                    .map((game) => (
                         <Card key={game._id}>
                             <div>
                                 <div className="w-52 truncate">
@@ -110,6 +132,8 @@ export const Home = () => {
                             </div>
                         </Card>
                     ))
+
+
                 }
             </div>
         </>
