@@ -21,7 +21,8 @@ export const SubmitSigninData = () => {
                             lastName: data.lastName,
                             email: data.email,
                             role: data.role,
-                            remainingVotes: data.remainingVotes
+                            remainingVotes: data.remainingVotes,
+                            votedGames: data.votedGames
                         }, token
                     );
                     Swal.fire({

@@ -2,16 +2,17 @@
 import { Button, Modal } from 'flowbite-react'
 import { useForm } from 'react-hook-form'
 import { MdPlaylistAdd } from 'react-icons/md';
-import { SubmitGameData } from '../../../utils/SubmitGameData';
 import { useState } from 'react';
 import { Puff } from 'react-loader-spinner';
+import { SubmitGameData } from '../../../utils/index';
 
 export const AddGameModal = ({ open, setOpen }) => {
+    const { sendUserData } = SubmitGameData() 
     const [loading, setLoading] = useState(false);
     const { register, handleSubmit, reset, formState: { errors } } = useForm()
 
     const submitData = (data) => {
-        SubmitGameData(data, setLoading, setOpen, reset)
+        sendUserData(data, setLoading, setOpen, reset)
     }
     return (
         <Modal show={open} onClose={() => setOpen(false)} size={"xl"} dismissible>

@@ -5,7 +5,7 @@ import { SIGNIN } from "../router/path";
 
 export const SubmitSignupData = () => {
     const navigate = useNavigate()
-
+    
     const sendUserData = (data) => {
         axios.post(import.meta.env.VITE_BACKEND + 'users/register', { data })
             .then(({ status }) => {
@@ -19,7 +19,6 @@ export const SubmitSignupData = () => {
                         background: "#1b1e2a",
                         timer: 1500
                     })
-
                 }
                 else if (status === 204) {
                     Swal.fire({
@@ -30,7 +29,6 @@ export const SubmitSignupData = () => {
                         background: "#1b1e2a",
                         timer: 1500
                     })
-
                 }
                 else {
                     Swal.fire({
@@ -41,12 +39,10 @@ export const SubmitSignupData = () => {
                         background: "#1b1e2a",
                         timer: 1500
                     })
-
                 }
             });
 
     }
-
 
     return {
         sendUserData

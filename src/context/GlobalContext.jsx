@@ -11,7 +11,7 @@ export const useGlobalContext = () => {
 export const GlobalProvider = ({ children }) => {
 
     const initialState = {
-        allGifs: [],
+        allGames: [],
     }
 
     const reducer = (state, action) => {
@@ -26,7 +26,7 @@ export const GlobalProvider = ({ children }) => {
     };
 
     const setAllGames = useCallback((allGames) => {
-        dispatch({ type: TYPES.SET_ALL_GAMES, payload: { allGames } })
+        dispatch({ type: TYPES.SET_ALL_GAMES, payload: {allGames} })
     }, [])
 
 

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from "react";
 import { TYPES } from "./types";
 import { CheckUserData } from "../utils";
@@ -24,7 +25,8 @@ export const AuthProvider = ({ children }) => {
             lastName: "",
             email: "",
             role: "",
-            remainingVotes: 0
+            remainingVotes: 0,
+            votedGames: []
         },
         token: "",
         error: "",
@@ -60,6 +62,16 @@ export const AuthProvider = ({ children }) => {
                     token: action.payload.token,
                     error: ""
                 };
+
+            case TYPES.USER_VOTED_GAMES:
+                return {
+                    ...state,
+                    user: {
+                        ...state.user,
+                        votedGames: action.payload
+                    }
+                }
+
             default:
                 return state;
         }
@@ -70,9 +82,6 @@ export const AuthProvider = ({ children }) => {
         initialState
     );
 
-    useEffect(() => {
-        checkUser(token, refresh)
-    }, [])
 
 
     const login = useCallback((user, token, error) => {
@@ -89,17 +98,28 @@ export const AuthProvider = ({ children }) => {
             dispatch({ type: TYPES.LOGIN_ERROR, payload: error })
     }, [])
 
+    const userVotedGames = useCallback((votedGames) => {
+        dispatch({ type: TYPES.CHANGE_EMAIL, payload: votedGames })
+    }, [])
+
     const logout = useCallback(() => {
         localStorage.removeItem('userToken');
         dispatch({ type: TYPES.LOGOUT })
     }, []);
+
+
+    useEffect(() => {
+        checkUser(token, refresh)
+    }, [])
+
 
     const authData = useMemo(() => ({
         authState,
         refresh,
         login,
         logout,
-    }), [authState, login, logout, refresh,]);
+        userVotedGames
+    }), [authState, login, logout, refresh, userVotedGames]);
 
     return (
         <AuthContext.Provider value={authData}>{children}</AuthContext.Provider>
