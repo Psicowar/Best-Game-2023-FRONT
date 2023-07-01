@@ -24,7 +24,7 @@ export const Home = () => {
     const [votedGames, setVotedGames] = useState([])
     const [textValue, setTextValue] = useState("A -> Z")
 
-    // const [alpabetichalOrder, setAlphabeticalOrder] = useState([])
+    const [alpabetichalOrder, setAlphabeticalOrder] = useState([])
     const { globalState } = useGlobalContext()
     const { addVote, removeVote } = UpdateGameVotes()
     const { checkUser } = CheckUserData()
