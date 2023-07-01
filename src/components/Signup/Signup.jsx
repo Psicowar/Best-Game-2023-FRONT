@@ -13,7 +13,7 @@ export const Signup = () => {
   }
 
   return (
-    <div className='flex justify-center items-center h-[90vh]'>
+    <div className='flex justify-center items-center h-[91.5vh] bg-slate-500'>
       <form className="flex sm:w-[40vw] md:w-[20vw] flex-col gap-4" onSubmit={handleSubmit(submitData)}>
         <div>
           <div className="mb-2 block">
@@ -25,6 +25,7 @@ export const Signup = () => {
           <TextInput
             placeholder="Name"
             type="text"
+            className='bg-gray-200 rounded-lg'
             {...register("firstName", { required: true, pattern: /^[A-Za-z]+$/i })}
           />
           {errors.name?.type === "required" && <p className="text-red-500 text-xs text-center pt-1">The name is required</p>}
@@ -40,6 +41,7 @@ export const Signup = () => {
           <TextInput
             placeholder="Last name"
             type="text"
+            className='bg-gray-200 rounded-lg'
             {...register("lastName", { required: true, pattern: /^[A-Za-z]+$/i })}
           />
           {errors.lastName?.type === "required" && <p className="text-red-500 text-xs text-center pt-1">The last name is required.</p>}
@@ -55,6 +57,7 @@ export const Signup = () => {
           <TextInput
             placeholder="example@example.com"
             type="email"
+            className='bg-gray-200 rounded-lg'
             {...register("email", {
               required: true,
               pattern: /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/i
@@ -73,6 +76,7 @@ export const Signup = () => {
           <TextInput
             placeholder="********"
             type="password"
+            className='bg-gray-200 rounded-lg'
             {...register("password", {
               required: true,
               pattern: /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/

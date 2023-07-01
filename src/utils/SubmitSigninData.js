@@ -30,7 +30,7 @@ export const SubmitSigninData = () => {
                         icon: 'success',
                         title: 'Successfully logged in',
                         showConfirmButton: false,
-                        background: "#1b1e2a",
+                        background: '#64748b',
                         timer: 1500
                     })
                     localStorage.setItem("userToken", token)
@@ -43,7 +43,7 @@ export const SubmitSigninData = () => {
                         icon: 'error',
                         title: 'Incorrect login details',
                         showConfirmButton: false,
-                        background: "#1b1e2a",
+                        background: '#64748b',
                         timer: 1500
                     })
                 } else {
@@ -52,7 +52,7 @@ export const SubmitSigninData = () => {
                         icon: 'error',
                         title: 'Something went wrong',
                         showConfirmButton: false,
-                        background: "#1b1e2a",
+                        background: '#64748b',
                         timer: 1500
                     })
 

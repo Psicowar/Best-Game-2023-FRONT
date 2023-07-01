@@ -16,7 +16,7 @@ export const SubmitSignupData = () => {
                         icon: 'success',
                         title: 'Registered Successfully!',
                         showConfirmButton: false,
-                        background: "#1b1e2a",
+                        background: '#64748b',
                         timer: 1500
                     })
                 }
@@ -26,7 +26,7 @@ export const SubmitSignupData = () => {
                         icon: 'error',
                         title: 'User already exists!',
                         showConfirmButton: false,
-                        background: "#1b1e2a",
+                        background: '#64748b',
                         timer: 1500
                     })
                 }
@@ -36,7 +36,7 @@ export const SubmitSignupData = () => {
                         icon: 'error',
                         title: 'Something went wrong!',
                         showConfirmButton: false,
-                        background: "#1b1e2a",
+                        background: '#64748b',
                         timer: 1500
                     })
                 }

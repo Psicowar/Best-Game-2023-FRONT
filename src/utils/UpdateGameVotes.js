@@ -13,7 +13,7 @@ export const UpdateGameVotes = () => {
                         icon: 'error',
                         title: data.message,
                         showConfirmButton: false,
-                        background: "#1b1e2a",
+                        background: '#64748b',
                         timer: 1500
                     })
                 } else if (status === 201) {
@@ -22,7 +22,7 @@ export const UpdateGameVotes = () => {
                         icon: 'success',
                         title: `Voted successfully, ${data.user.remainingVotes} left!`,
                         showConfirmButton: false,
-                        background: "#1b1e2a",
+                        background: '#64748b',
                         timer: 1500
                     })
                 } else {
@@ -31,7 +31,7 @@ export const UpdateGameVotes = () => {
                         icon: 'error',
                         title: 'Voted susscesfully',
                         showConfirmButton: false,
-                        background: "#1b1e2a",
+                        background: '#64748b',
                         timer: 1500
                     })
                 }
@@ -47,7 +47,7 @@ export const UpdateGameVotes = () => {
                         icon: 'error',
                         title: data.message,
                         showConfirmButton: false,
-                        background: "#1b1e2a",
+                        background: '#64748b',
                         timer: 1500
                     })
                 } else if (status === 201) {
@@ -56,7 +56,7 @@ export const UpdateGameVotes = () => {
                         icon: 'success',
                         title: `Unvoted successfully, ${data.user.remainingVotes} left!`,
                         showConfirmButton: false,
-                        background: "#1b1e2a",
+                        background: '#64748b',
                         timer: 1500
                     })
                 } else {
@@ -65,7 +65,7 @@ export const UpdateGameVotes = () => {
                         icon: 'error',
                         title: 'Voted susscesfully',
                         showConfirmButton: false,
-                        background: "#1b1e2a",
+                        background: '#64748b',
                         timer: 1500
                     })
                 }

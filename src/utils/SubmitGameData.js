@@ -26,7 +26,7 @@ export const SubmitGameData = () => {
                 icon: 'success',
                 title: 'Successfully Uploaded',
                 showConfirmButton: false,
-                background: "#1b1e2a",
+                background: '#64748b',
                 timer: 1500
             })
             getAllGames()
@@ -40,7 +40,7 @@ export const SubmitGameData = () => {
                 icon: 'error',
                 title: 'No image uploaded, please upload an image',
                 showConfirmButton: false,
-                background: "#1b1e2a",
+                background: '#64748b',
                 timer: 1500
             })
             setLoading(false)
@@ -52,7 +52,7 @@ export const SubmitGameData = () => {
                 icon: 'error',
                 title: 'Something went wrong, please try again',
                 showConfirmButton: false,
-                background: "#1b1e2a",
+                background: '#64748b',
                 timer: 1500
             })
             setLoading(false)

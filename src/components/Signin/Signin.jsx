@@ -12,7 +12,7 @@ export const Signin = () => {
         sendUserData(data)
     }
     return (
-        <div className='flex justify-center items-center h-[90vh]'>
+        <div className='flex justify-center items-center h-[91.5vh] bg-slate-500'>
             <form className="flex w-[20vw] flex-col gap-4" onSubmit={handleSubmit(submitData)}>
                 <div>
                     <div className="mb-2 block">
@@ -24,6 +24,7 @@ export const Signin = () => {
                     <TextInput
                         placeholder="example@example.com"
                         type="email"
+                        className='bg-gray-200 rounded-lg'
                         {...register("email", { required: true })}
                     />
                     {errors.name?.type === "required" && <p className="text-red-500 text-xs text-center pt-1">The email is required.</p>}
@@ -38,6 +39,8 @@ export const Signin = () => {
                     <TextInput
                         placeholder="********"
                         type="password"
+                        
+                        className='bg-gray-200 rounded-lg'
                         {...register("password", { required: true, })}
                     />
                     {errors.password?.type === "required" && <p className="text-red-500 text-xs text-center pt-1">The password is required. </p>}

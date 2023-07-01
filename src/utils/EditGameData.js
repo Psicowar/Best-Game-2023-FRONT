@@ -17,7 +17,7 @@ export const UpdateGameData = () => {
                         icon: 'success',
                         title: 'deleted successfully',
                         showConfirmButton: false,
-                        background: "#1b1e2a",
+                        background: '#64748b',
                         timer: 1500
                     })
                 } else {
@@ -26,7 +26,7 @@ export const UpdateGameData = () => {
                         icon: 'error',
                         title: 'Something get wron',
                         showConfirmButton: false,
-                        background: "#1b1e2a",
+                        background: '#64748b',
                         timer: 1500
                     })
                 }

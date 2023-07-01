@@ -16,7 +16,7 @@ export const DeleteGame = () => {
                         icon: 'success',
                         title: 'deleted successfully',
                         showConfirmButton: false,
-                        background: "#1b1e2a",
+                        background: '#64748b',
                         timer: 1500
                     })
                 } else {
@@ -25,7 +25,7 @@ export const DeleteGame = () => {
                         icon: 'error',
                         title: 'Something get wron',
                         showConfirmButton: false,
-                        background: "#1b1e2a",
+                        background: '#64748b',
                         timer: 1500
                     })
                 }
