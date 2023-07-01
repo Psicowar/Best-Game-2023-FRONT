@@ -111,7 +111,7 @@ export const Home = () => {
         <>
             <AddGameModal setOpen={setOpenUploadModal} open={openUploadModal} />
             <UpdateGameDataModal setOpen={setOpenUpdateGameModal} open={openUpdateGameModal} game={currentGame} />
-            <div className="flex w-full items-end justify-center gap-3 pt-5 pb-10 bg-slate-300 sticky top-[6.55vh]">
+            <div className="flex w-full items-end justify-center gap-3 pt-5 pb-10 bg-slate-300 sticky top-[6.1vh]">
                 <input
                     type="text"
                     className="border-0 bg-gray-200 focus:border-t-transparent focus:ring-gray-300 w-96 rounded-md "
