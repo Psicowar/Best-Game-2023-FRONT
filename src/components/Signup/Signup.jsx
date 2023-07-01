@@ -13,7 +13,7 @@ export const Signup = () => {
   }
 
   return (
-    <div className='flex justify-center items-center h-[91.5vh] bg-slate-500'>
+    <div className='flex justify-center items-center h-[93.9vh] bg-slate-500'>
       <form className="flex sm:w-[40vw] md:w-[20vw] flex-col gap-4" onSubmit={handleSubmit(submitData)}>
         <div>
           <div className="mb-2 block">

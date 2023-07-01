@@ -11,7 +11,6 @@ export const NavbarComponent = () => {
     const location = useLocation()
     const { pathname } = location
 
-    console.log(pathname);
 
     const handleLogout = () => {
         logout(null)

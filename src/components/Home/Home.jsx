@@ -22,7 +22,9 @@ export const Home = () => {
     const [currentGame, setCurrentGame] = useState()
     const [categorie, setCategorie] = useState([])
     const [votedGames, setVotedGames] = useState([])
+    const [textValue, setTextValue] = useState("A -> Z")
 
+    // const [alpabetichalOrder, setAlphabeticalOrder] = useState([])
     const { globalState } = useGlobalContext()
     const { addVote, removeVote } = UpdateGameVotes()
     const { checkUser } = CheckUserData()
@@ -92,6 +94,17 @@ export const Home = () => {
         setVotedGames([filterVotedGames]);
     }
 
+    const handleAlphabeticalOrder = () => {
+        if (textValue === "Z -> A") {
+            setTextValue("A -> Z")
+            setAlphabeticalOrder(orderedGamesByVotes.sort())
+        } else {
+            setTextValue("Z -> A")
+            setAlphabeticalOrder(orderedGamesByVotes.sort()).reverse()
+        }
+
+    }
+
 
 
     return (
@@ -140,6 +153,11 @@ export const Home = () => {
                             ))
                         }
                     </select>
+                </div>
+                <div className="flex items-center flex-col justify-center">
+                    <Button onClick={handleAlphabeticalOrder} >
+                        {textValue}
+                    </Button>
                 </div>
             </div>
 
@@ -213,7 +231,7 @@ export const Home = () => {
                             orderedGamesByVotes?.filter(({ gameName }) => {
                                 if (!queryParams) return true
                                 else if (queryParams.length < 3) return true
-                                else return gameName?.toLowerCase().includes(queryParams.toLowerCase()).sort()
+                                else return gameName?.toLowerCase().includes(queryParams.toLowerCase())
                             })
                                 .map((game) => (
                                     <Card key={game?._id} className="bg-gray-200">
