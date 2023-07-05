@@ -1,7 +1,7 @@
 
 /* eslint-disable react/prop-types */
-import { Modal } from "flowbite-react";
-import { UpdateGameData } from "../../utils/index";
+import { Button, Modal } from "flowbite-react";
+import { UpdateGameData } from "../../../utils/index";
 import { useForm } from "react-hook-form";
 
 export const UpdateGameDataModal = ({ open, setOpen, game }) => {
@@ -20,37 +20,37 @@ export const UpdateGameDataModal = ({ open, setOpen, game }) => {
             onClose={() => setOpen(false)}
             dismissible
         >
-            <Modal.Header className='bg-[#256D85]' />
-            <Modal.Body className='bg-[#256D85]'>
+            <Modal.Header className='bg-slate-500' />
+            <Modal.Body className='bg-slate-500'>
                 <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
-                    <h3 className="text-center text-3xl font-bold text-[#E6DDC4]"> Edit Game</h3>
+                    <h3 className="text-center text-3xl font-bold"> Edit Game</h3>
                     <div className='w-full flex justify-center'>
                         <img src={game?.picture} alt={game?.gameName} className='w-50 h-40 object-cover rounded-md' />
                     </div>
                     <div className="flex flex-col gap-2 pb-5">
                        
-                        <span className='font-semibold text-[#E6DDC4]'>Game name</span>
+                        <span className='font-semibold'>Game name</span>
                         <input
                             type="text"
-                            className='bg-slate-600 border-0 focus:border-t-transparent focus:ring-[#E6DDC4] rounded-md text-[#E6DDC4] text-sm rounde block w-full p-2.5 placeholder-[#E6DDC4] truncate'
+                            className=' bg-gray-200 border-0 focus:border-t-transparent focus:ring-[#E6DDC4] rounded-md text-sm rounde block w-full p-2.5 truncate'
                             placeholder={game?.gameName}
                             {...register("gameName", { required: true})}  
                           
                             
                         />
-                        <span className='font-semibold text-[#E6DDC4]'>Game categorie</span>
+                        <span className='font-semibold'>Game categorie</span>
                         <input
                             type="text"
-                            className='bg-slate-600 border-0 focus:border-t-transparent focus:ring-[#E6DDC4] rounded-md text-[#E6DDC4] text-sm rounde block w-full p-2.5 placeholder-[#E6DDC4] truncate'
+                            className=' bg-gray-200 border-0 focus:border-t-transparent focus:ring-[#E6DDC4] rounded-md text-sm rounde block w-full p-2.5 truncate'
                             placeholder={game?.categorie}
                             {...register("categorie", { required: true})} 
                             
                         />
                     </div>
                     <div className='h-10'>
-                        <button type="submit" className="bg-[#467686] p-2 rounded-lg w-full font-semibold hover:border-2 hover:border-[#E6DDC4] text-center text-[#E6DDC4]">
+                        <Button type="submit" className=" rounded-lg m-auto font-semibold hover:border-2 text-center">
                             Update gif title
-                        </button>
+                        </Button>
                     </div>
                 </form>
             </Modal.Body>

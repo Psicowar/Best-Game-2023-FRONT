@@ -7,7 +7,8 @@ export const GetGames = () => {
     const getAllGames = () => {
         axios.get(import.meta.env.VITE_BACKEND + 'games/all')
             .then(({ data }) => {
-                setAllGames(data);
+                const byVotesOrderedGames = data?.sort(({ votes: a }, { votes: b }) => b - a)
+                setAllGames(byVotesOrderedGames);
             })
     }
     return {

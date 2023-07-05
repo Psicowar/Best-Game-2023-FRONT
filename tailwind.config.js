@@ -1,3 +1,4 @@
+/* eslint-env node */
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -6,7 +7,11 @@ export default {
     'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'
   ],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        "gridAutoFit": 'repeat(auto-fit, minmax(200px, 1fr))', 
+      }
+    },
   },
   plugins: [
     require('flowbite/plugin')

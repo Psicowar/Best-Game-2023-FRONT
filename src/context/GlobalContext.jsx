@@ -20,15 +20,16 @@ export const GlobalProvider = ({ children }) => {
                 return {
                     allGames: action.payload.allGames
                 };
-
             default:
                 return state;
+
         }
     };
 
     const setAllGames = useCallback((allGames) => {
-        dispatch({ type: TYPES.SET_ALL_GAMES, payload: {allGames} })
+        dispatch({ type: TYPES.SET_ALL_GAMES, payload: { allGames } })
     }, [])
+
 
 
 
