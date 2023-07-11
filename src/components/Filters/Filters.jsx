@@ -59,7 +59,7 @@ export const Filters = ({ setFilterResult }) => {
 
     let gameCategory = []
     allGames?.map((game) => (
-        gameCategory.push(game.categorie)
+        gameCategory.push(game.categorie.toLowerCase())
     ))
     const uniqueCategories = [...new Set(gameCategory)]
 
@@ -86,7 +86,7 @@ export const Filters = ({ setFilterResult }) => {
                     <option value="All">Select all</option>
                     {
                         uniqueCategories?.map((category, i) => (
-                            <option key={i} value={category}>
+                            <option key={i} value={category} className="capitalize ">
                                 {category}
                             </option>
                         ))
@@ -104,7 +104,7 @@ export const Filters = ({ setFilterResult }) => {
                     {
                         allGames?.map((game) => (
                             <option key={game._id} value={game._id}>
-                                {game.gameName} Votes: {game.votes}
+                                {game.gameName} - Votes: {game.votes}
                             </option>
                         ))
                     }
