@@ -103,7 +103,7 @@ export const Filters = ({ setFilterResult }) => {
                     <option value="All">Select all</option>
                     {
                         allGames?.map((game) => (
-                            <option key={game._id} value={game._id}>
+                            <option key={game._id} value={game._id} className="capitalize ">
                                 {game.gameName} - Votes: {game.votes}
                             </option>
                         ))
