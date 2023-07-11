@@ -12,7 +12,7 @@ export const Home = () => {
     const [filterResult, setFilterResult] = useState({
         category: "All",
         votedGame: "All",
-        sort: false,
+        sort: "Top voted",
         filterType: "category"
     })
 
@@ -34,9 +34,14 @@ export const Home = () => {
             }
         })
     }
-
+    console.log(filterResult.sort);
     const filteredGames = filterGame(allGames)
-    const alpabethicalFilter = [...filteredGames].sort((a, b) => a.gameName.localeCompare(b.gameName))
+    const alpabethicalFilter = filterResult.sort === "Top voted"
+        ? filteredGames
+        : filterResult.sort === "A - Z"
+            ? [...filteredGames].sort((a, b) => a.gameName.localeCompare(b.gameName))
+            : [...filteredGames].sort((a, b) => b.gameName.localeCompare(a.gameName))
+
 
 
     return (

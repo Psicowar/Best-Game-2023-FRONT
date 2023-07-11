@@ -23,26 +23,38 @@ export const NavbarComponent = () => {
             timer: 1500
         })
     }
-
     return (
         <Navbar
             fluid
             className='sticky top-0 bg-slate-500'
         >
-            <Navbar.Brand>
-                <span className="self-center whitespace-nowrap text-xl font-semibold text-white">
-                    Best Game 2023
-                </span>
-            </Navbar.Brand>
-            <div className="flex md:order-2">
+            <div className="flex md:order-2 justify-between w-full">
+                <Navbar.Brand>
+                    <span className="self-center whitespace-nowrap text-xl font-semibold text-white">
+                        Best Game 2023
+                    </span>
+                </Navbar.Brand>
+                <Navbar.Collapse>
+                    {
+                        pathname != HOME ?
+                            <NavLink to={HOME} className='pr-10 flex items-center'>
+                                <Button>Home</Button>
+                            </NavLink>
+                            : null
+                    }
+                </Navbar.Collapse>
                 {
                     isAuthenticated ?
-                        <div className='flex items-center gap-5'>
-                            <span>Welcome {user.firstName}!</span>
-                            <Button onClick={handleLogout}>
-                                <span>Logout</span>
-                            </Button>
-                        </div>
+                        <>
+                            <div className='flex items-center gap-5'>
+                                <div>
+                                    <p>Welcome {user.firstName} you have <span className='rounded-md bg-red-500 px-2 m-2 font-semibold text-2xl'>{user.remainingVotes}</span> votes left!</p>
+                                </div>
+                                <Button onClick={handleLogout}>
+                                    <span>Logout</span>
+                                </Button>
+                            </div>
+                        </>
                         :
                         pathname === SIGNIN ?
 
@@ -60,15 +72,6 @@ export const NavbarComponent = () => {
                 }
                 <Navbar.Toggle />
             </div>
-            <Navbar.Collapse>
-                {
-                    pathname != HOME ?
-                    <NavLink to={HOME} className='pr-16'>
-                        <span className='bg-[#0e7490] hover:bg-[#0a5e75] text-white hover: p-3 rounded-lg'>Home</span>
-                    </NavLink>
-                    : null
-                }
-            </Navbar.Collapse>
         </Navbar>
     )
 }

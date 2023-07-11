@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
-import { Button, Label, TextInput } from "flowbite-react"
+import { Button, Label } from "flowbite-react"
 import { useGlobalContext } from "../../context/GlobalContext";
 import { useForm } from 'react-hook-form';
 import { UseQueryParamsContext } from '../../context/queryParamsContext';
@@ -13,7 +12,6 @@ export const Filters = ({ setFilterResult }) => {
     const { register, handleSubmit, } = useForm();
     const { setQueryParams } = UseQueryParamsContext()
     const { globalState } = useGlobalContext()
-    const [sortGames, setSortGames] = useState('A-Z')
 
     const { allGames } = globalState
 
@@ -34,17 +32,22 @@ export const Filters = ({ setFilterResult }) => {
         }))
     }
 
-    const handleAlphabeticalOrder = () => {
-        if (sortGames === "A-Z") {
-            setSortGames("Z-A")
-            setFilterResult({
-                sort: true,
-            })
+    const handleAlphabeticalOrder = (e) => {
+        if (e.target.value === "Top voted") {
+            setFilterResult(prevState => ({
+                ...prevState,
+                sort: "Top voted"
+            }))
+        } else if (e.target.value === "A - Z") {
+            setFilterResult(prevState => ({
+                ...prevState,
+                sort: "A - Z"
+            }))
         } else {
-            setSortGames("A-Z")
-            setFilterResult({
-                sort: false,
-            })
+            setFilterResult(prevState => ({
+                ...prevState,
+                sort: "Z - A"
+            }))
         }
     }
 
@@ -55,14 +58,14 @@ export const Filters = ({ setFilterResult }) => {
 
 
     return (
-        <section className="flex justify-center lg:justify-between p-3 gap-3 bg-slate-300 sticky top-0 flex-col md:flex-row">
+        <section className="flex justify-center lg:justify-between p-3 gap-3 bg-slate-300 flex-col md:flex-row">
             <form onSubmit={handleSubmit(onSubmit)} className='flex items-end justify-end gap-5'>
                 <Button type="submit">
                     Search
                 </Button>
-                <TextInput
+                <input
                     type="text"
-                    className="border-0 bg-gray-200 focus:border-t-transparent focus:ring-gray-300 rounded-md h-10 "
+                    className="border-0 bg-gray-200 focus:border-t-transparent focus:ring-gray-300 rounded-md "
                     placeholder="Search..."
                     {...register("search")}
                 />
@@ -102,10 +105,21 @@ export const Filters = ({ setFilterResult }) => {
                     }
                 </select>
             </div>
-            <div className="flex items-center flex-col justify-end">
-                <Button onClick={handleAlphabeticalOrder} >
+            <div className="flex items-center flex-col justify-end gap-1">
+                <Label className="font-semibold" value='Alphabetical order' />
+                <select
+                    label="Dropdown button voted games"
+                    className="rounded-lg  bg-gray-200 border-0 focus:ring-gray-300 w-28"
+                    onChange={handleAlphabeticalOrder}
+                >
+                    <option value="Top voted">Top voted</option>
+                    <option value="A - Z">A - Z</option>
+                    <option value="Z - A">Z - A</option>
+
+                </select>
+                {/* <Button onClick={handleAlphabeticalOrder} >
                     {sortGames}
-                </Button>
+                </Button> */}
             </div>
         </section>
     )

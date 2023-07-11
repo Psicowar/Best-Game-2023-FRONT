@@ -5,22 +5,21 @@ import { SIGNIN } from "../router/path";
 
 export const SubmitSignupData = () => {
     const navigate = useNavigate()
-    
+
     const sendUserData = (data) => {
         axios.post(import.meta.env.VITE_BACKEND + 'users/register', { data })
-            .then(({ status }) => {
-                if (status === 201) {
-                    navigate(SIGNIN)
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Registered Successfully!',
-                        showConfirmButton: false,
-                        background: '#64748b',
-                        timer: 1500
-                    })
-                }
-                else if (status === 204) {
+            .then(() => {
+                navigate(SIGNIN)
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Registered Successfully!',
+                    showConfirmButton: false,
+                    background: '#64748b',
+                    timer: 1500
+                })
+            }).catch(err => {
+                if (err.response.status === 422) {
                     Swal.fire({
                         position: 'center',
                         icon: 'error',
@@ -29,8 +28,7 @@ export const SubmitSignupData = () => {
                         background: '#64748b',
                         timer: 1500
                     })
-                }
-                else {
+                } else {
                     Swal.fire({
                         position: 'center',
                         icon: 'error',

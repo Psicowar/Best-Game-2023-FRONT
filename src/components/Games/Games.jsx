@@ -6,22 +6,21 @@ import { MdModeEditOutline } from 'react-icons/md'
 import { AiFillDelete, AiOutlinePlus } from 'react-icons/ai'
 import { useAuth } from '../../context/AuthContext'
 import { useEffect, useState } from 'react';
-import { CheckUserData, DeleteGame, GetGames, UpdateGameVotes } from '../../utils';
+import { DeleteGame, GetGames, UpdateGameVotes } from '../../utils';
 import { useNavigate } from 'react-router-dom';
 import { SIGNIN } from '../../router/path';
 import Swal from 'sweetalert2';
 import { UseQueryParamsContext } from '../../context/queryParamsContext';
 
 
-export const Games = ({ filteredGames }) => {
 
+export const Games = ({ filteredGames }) => {
     const { authState } = useAuth()
     const { queryParams } = UseQueryParamsContext()
     const navigate = useNavigate()
     const { getAllGames } = GetGames()
     const { deleteSingleGame } = DeleteGame()
     const { addVote, removeVote } = UpdateGameVotes()
-    const { checkUser } = CheckUserData()
 
     const { isAuthenticated, user } = authState
     const {search} = queryParams
@@ -43,8 +42,6 @@ export const Games = ({ filteredGames }) => {
     const handleVote = (gameId) => {
         if (isAuthenticated) {
             addVote(gameId, user.id)
-            checkUser(authState.token)
-            getAllGames()
         } else {
             Swal.fire({
                 title: 'You are not logged in, log in to vote',
@@ -64,16 +61,15 @@ export const Games = ({ filteredGames }) => {
 
     const handleUnVote = (gameId) => {
         removeVote(gameId, user.id)
-        checkUser(authState.token)
-        getAllGames()
     }
-
+    
     useEffect(() => {
         getAllGames()
     }, [])
 
+    
     return (
-        <main>
+        <main className='bg-slate-500 h-screen'>
             <AddGameModal setOpen={setOpenUploadModal} open={openUploadModal} />
             <UpdateGameDataModal setOpen={setOpenUpdateGameModal} open={openUpdateGameModal} game={currentGame} />
             <ul className='grid grid-cols-gridAutoFit gap-3 p-3'>
@@ -97,15 +93,15 @@ export const Games = ({ filteredGames }) => {
                             <div className="flex justify-between w-full items-center px-2 pb-3 ">
                                 {
                                     isAuthenticated && user.role === "A" &&
-                                    <>
+                                    <div>
                                         <MdModeEditOutline size={30} className="cursor-pointer rounded-full p-1 bg-gray-200 hover:bg-gray-400" onClick={() => handleOpenModal(game)} />
                                         <AiFillDelete size={30} className="cursor-pointer rounded-full p-1 bg-gray-200 hover:bg-gray-400" onClick={() => delGame(game?._id)} />
-                                    </>
+                                    </div>
                                 }
                                 <span className="h-full">{game?.votes} Votes</span>
                                 {
                                     user.votedGames?.includes(game?._id) ?
-                                        <Button onClick={() => handleUnVote(game?._id)}>Unvote</Button>
+                                        <Button className='bg-rose-700 hover:bg-rose-800' onClick={() => handleUnVote(game?._id)}>Unvote</Button>
                                         :
                                         <Button onClick={() => handleVote(game?._id)}>Vote</Button>
                                 }
