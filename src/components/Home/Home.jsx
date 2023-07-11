@@ -34,7 +34,6 @@ export const Home = () => {
             }
         })
     }
-    console.log(filterResult.sort);
     const filteredGames = filterGame(allGames)
     const alpabethicalFilter = filterResult.sort === "Top voted"
         ? filteredGames

@@ -8,6 +8,7 @@ import { UseQueryParamsContext } from '../../context/queryParamsContext';
 
 
 
+
 export const Filters = ({ setFilterResult }) => {
     const { register, handleSubmit, } = useForm();
     const { setQueryParams } = UseQueryParamsContext()
@@ -56,6 +57,11 @@ export const Filters = ({ setFilterResult }) => {
         setQueryParams(data)
     }
 
+    let gameCategory = []
+    allGames?.map((game) => (
+        gameCategory.push(game.categorie)
+    ))
+    const uniqueCategories = [...new Set(gameCategory)]
 
     return (
         <section className="flex justify-center lg:justify-between p-3 gap-3 bg-slate-300 flex-col md:flex-row">
@@ -79,11 +85,10 @@ export const Filters = ({ setFilterResult }) => {
                 >
                     <option value="All">Select all</option>
                     {
-                        allGames?.map((game) => (
-                            <option key={game._id} value={game.categorie}>
-                                {game.categorie}
+                        uniqueCategories?.map((category, i) => (
+                            <option key={i} value={category}>
+                                {category}
                             </option>
-
                         ))
                     }
                 </select>
@@ -108,18 +113,14 @@ export const Filters = ({ setFilterResult }) => {
             <div className="flex items-center flex-col justify-end gap-1">
                 <Label className="font-semibold" value='Alphabetical order' />
                 <select
-                    label="Dropdown button voted games"
+                    label="Dropdown button alphabetical order for games"
                     className="rounded-lg  bg-gray-200 border-0 focus:ring-gray-300 w-28"
                     onChange={handleAlphabeticalOrder}
                 >
                     <option value="Top voted">Top voted</option>
                     <option value="A - Z">A - Z</option>
                     <option value="Z - A">Z - A</option>
-
                 </select>
-                {/* <Button onClick={handleAlphabeticalOrder} >
-                    {sortGames}
-                </Button> */}
             </div>
         </section>
     )
